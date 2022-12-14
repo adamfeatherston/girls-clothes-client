@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { KidViews } from "./KidViews";
+import { KidNavBar } from "./nav/NavBar";
+import { Login } from "./auth/Login";
+import { KidRegister } from "./auth/KidRegister";
+import { ParentViews } from "./views/ParentViews";
+import { ParentNavBar } from "./nav/ParentNavBar";
+import "./Clothes.css";
+import { isStaff } from "../utils/isStaff";
+import { ParentRegister } from "./auth/ParentRegister";
 
-function App() {
+export const GirlsClothes = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+      <Route
+        render={() => {
+          if (localStorage.getItem("clothesuser")) {
+            if (isStaff()) {
+              return <>
+                  <ParentNavBar />
+                  <ParentViews />
+                </>
+            }
+            else {
+              return <>
+                  <KidNavBar />
+                  <KidViews />
+                </>
+            }
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
 
-export default App;
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/registerkid">
+        <KidRegister />
+      </Route>
+      <Route path="/registerparent">
+        <ParentRegister />
+      </Route>
+    </>
+  )
+}

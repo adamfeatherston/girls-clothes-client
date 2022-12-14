@@ -1,0 +1,36 @@
+.items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.item {
+    background-color: rgb(194, 198, 211);
+    border: .2em solid rgb(148, 159, 174);
+    color: black;
+    padding: 1rem;
+    margin: 2rem
+}
+
+.item__footer {
+    margin: 1rem 0 0.252rem 0;
+    font-style: italic;
+}
+
+.item__header {
+    font-size: larger;
+    font-weight: 865;
+    line-height: 2.75rem;
+}
+
+.buttons {
+    color: white;
+    border: solid rgb(178, 200, 188);
+    background-color: rgb(233, 196, 210);
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.buttons:not(:disabled):hover {
+    transform: scale(1.2) translateY(.125rem);
+}
