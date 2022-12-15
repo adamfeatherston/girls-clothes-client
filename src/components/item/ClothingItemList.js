@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import { deleteItem, getItems } from "../../managers/ClothingItemManager.js"
-import "./EventList.css"
+import { Link, useNavigate } from "react-router-dom"
+import { deleteClothingItem, getClothingItems } from "../../managers/ClothingItemManager.js"
+import "./Item.css"
 
 export const ClothingItemList = (props) => {
     const [ items, setItems ] = useState([])
@@ -9,7 +9,7 @@ export const ClothingItemList = (props) => {
     
     
     const updateClothingItemList = () => {
-        getItems().then(data => setItems(data))
+        getClothingItems().then(data => setItems(data))
     }
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export const ClothingItemList = (props) => {
                     </section>
                     <button className="buttons"
                             onClick={() => {
-                                deleteItem(item.id).then(() => updateClothingItemList())
+                                deleteClothingItem(item.id).then(() => updateClothingItemList())
                             }}>Remove this Item</button>
                     </>
                 })

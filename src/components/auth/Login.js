@@ -19,7 +19,8 @@ export const Login = () => {
         loginUser(user)
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem("lu_token", res.token)
+                    localStorage.setItem("clothes_token", res.token);
+                    localStorage.setItem("is_staff", res.staff)
                     navigate("/")
                 }
                 else {
@@ -54,7 +55,9 @@ export const Login = () => {
                 </form>
             </section>
             <section className="link--register">
-                <Link to="/registerkid">Register a new Kid</Link>
+                <Link to="/registerkid">Register a new Kid</Link>     
+            </section>
+            <section className="link--register">    
                 <Link to="/registerparent">Register a new Parent</Link>
             </section>
         </main>

@@ -12,14 +12,14 @@ export const ParentNavBar = () => {
             <Link className="nav-link" to="/outfits">Outfit List</Link>
             </li>
             <li className="navbar__item">
-                Navigation link
+            <Link className="nav-link" to="/kids">Kid List</Link>
             </li>
             {
-                (localStorage.getItem("lu_token") !== null) ?
+                (localStorage.getItem("clothes_token") !== null) ?
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("clothes_token")
                                 navigate('/login')
                             }}
                         >Logout</button>
