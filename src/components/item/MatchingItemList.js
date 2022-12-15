@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { deleteClothingItem, getClothingItems, } from "../../managers/ClothingItemManager.js"
+import { deleteClothingItem, getMatchingItems, } from "../../managers/ClothingItemManager.js"
 import "./Item.css"
 
-export const ClothingItemList = (props) => {
+export const MatchingItemList = (props) => {
     const [ items, setItems ] = useState([])
     const navigate = useNavigate();
     
     
     const updateClothingItemList = () => {
-        getClothingItems().then(data => setItems(data))
+        getMatchingItems().then(data => setItems(data))
     }
 
     useEffect(() => {
@@ -21,9 +21,9 @@ export const ClothingItemList = (props) => {
         <>
             <button className="btn btn-2 btn-sep icon-create"
                 onClick={() => {
-                    navigate({ pathname: "/clothingitems/matching" })
+                    navigate({ pathname: "/clothingitems" })
                 }}
-            >Matching Items</button>
+            >All Items</button>
         <article className="items">
             {
                 items.map(item => {
