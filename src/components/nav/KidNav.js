@@ -15,11 +15,11 @@ export const KidNavBar = () => {
                 Navigation link
             </li>
             {
-                (localStorage.getItem("lu_token") !== null) ?
+                (localStorage.getItem("clothes_token") !== null) ?
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("clothes_token")
                                 navigate('/login')
                             }}
                         >Logout</button>

@@ -47,7 +47,7 @@ export const KidRegister = () => {
             registerUser(newKid)
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("lu_token", res.token)
+                        localStorage.setItem("clothes_token", res.token)
                         navigate("/login")
                     }
                 })
@@ -83,35 +83,35 @@ export const KidRegister = () => {
                     <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="nickname"> Profile Image </label>
+                    <label htmlFor="nickname"> Nickname </label>
                     <input ref={nickname} type="text" name="nickname" className="form-control" placeholder="Nickname" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="age"> Medium </label>
+                    <label htmlFor="age"> Age </label>
                     <input ref={age} type="integer" name="age" className="form-control" placeholder="Age" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="dressSize"> CV </label>
+                    <label htmlFor="dressSize"> Dress Size </label>
                     <input ref={dressSize} type="text" name="dressSize" className="form-control" placeholder="Dress Size" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="shoeSize"> CV </label>
+                    <label htmlFor="shoeSize"> Shoe Size </label>
                     <input ref={shoeSize} type="text" name="shoeSize" className="form-control" placeholder="Shoe Size" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="shirtSize"> CV </label>
+                    <label htmlFor="shirtSize"> Shirt Size </label>
                     <input ref={shirtSize} type="text" name="shirtSize" className="form-control" placeholder="Shirt Size" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="pantSize"> CV </label>
+                    <label htmlFor="pantSize"> Pants Size </label>
                     <input ref={pantSize} type="text" name="pantSize" className="form-control" placeholder="Pant Size" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="underwearOrDiaperSize"> CV </label>
+                    <label htmlFor="underwearOrDiaperSize"> Underwear or Diaper Size </label>
                     <input ref={underwearOrDiaperSize} type="text" name="underwearOrDiaperSize" className="form-control" placeholder="Underwear or Diaper Size" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="sockSize"> CV </label>
+                    <label htmlFor="sockSize"> Socks Size </label>
                     <input ref={sockSize} type="text" name="sockSize" className="form-control" placeholder="Sock Size" required />
                 </fieldset>
                 <fieldset>
@@ -126,7 +126,7 @@ export const KidRegister = () => {
                     textAlign: "center"
                 }}>
                     
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register as an Artist</button>
+                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
                 </fieldset>
             </form>
             <section className="link--register">
