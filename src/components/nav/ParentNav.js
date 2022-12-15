@@ -9,7 +9,13 @@ export const ParentNavBar = () => {
             <Link className="nav-link" to="/clothingitems">Item List</Link>
             </li>
             <li className="navbar__item">
+            <Link className="nav-link" to="/clothingitems/new">Create Item</Link>
+            </li>
+            <li className="navbar__item">
             <Link className="nav-link" to="/outfits">Outfit List</Link>
+            </li>
+            <li className="navbar__item">
+            <Link className="nav-link" to="/outfits/new">Create Outfit</Link>
             </li>
             <li className="navbar__item">
             <Link className="nav-link" to="/kids">Kid List</Link>
