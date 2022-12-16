@@ -7,6 +7,8 @@ export const ClothingItemList = (props) => {
     const [ items, setItems ] = useState([])
     const navigate = useNavigate();
     
+    const clothesParentUser = localStorage.getItem("is_staff")
+    const clothesUser = JSON.parse(clothesParentUser)
     
     const updateClothingItemList = () => {
         getClothingItems().then(data => setItems(data))
@@ -33,10 +35,13 @@ export const ClothingItemList = (props) => {
                         <div className="item">Item Type: {item.item_type}</div>
                         <div className="item">Size: {item.size}</div>
                         <div className="item">Belongs to: {item.kid_nickname}</div>
-                        <button className="buttons"
+                        {clothesUser
+                            ? <button className="buttons"
                                 onClick={() => {
                                     deleteClothingItem(item.id).then(() => updateClothingItemList())
                                 }}>Remove this Item</button>
+                            : ""
+                        }
                     </section>
                     </>
                 })
