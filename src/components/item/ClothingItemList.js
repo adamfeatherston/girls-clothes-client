@@ -18,6 +18,15 @@ export const ClothingItemList = (props) => {
         updateClothingItemList()
     }, [])
 
+    // const displayCleanOrDirty = (items) => {
+    //     if (items.clean_or_dirty == true){
+    //         return "Yes"
+    //     }
+    //     else {
+    //         return "No"
+    //     }
+    // }
+
 
     return (
         <>

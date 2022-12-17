@@ -32,3 +32,40 @@ export const deleteClothingItem = (id) => {
         }
         })
 }
+
+export const getClothingTypes = () => {
+    return fetch("http://localhost:8000/clothingtypes", {
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("clothes_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
+export const createClothingItem = (clothe) => {
+    return fetch("http://localhost:8000/clothingitems", {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("clothes_token")}`
+        },
+        body: JSON.stringify(clothe)
+    })
+        .then(response => response.json())
+}
+
+export const getClothingUses = () => {
+    return fetch("http://localhost:8000/clothinguses", {
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("clothes_token")}`
+        }
+    })
+        .then(response => response.json())
+}
