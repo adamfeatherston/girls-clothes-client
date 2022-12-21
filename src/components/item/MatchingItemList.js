@@ -31,7 +31,7 @@ export const MatchingItemList = (props) => {
                 items.map(item => {
                     return <>
                     <section key={`item--${item.id}`} className="item">
-                        <Link to={`/items/edit/${item.id}`} className="item__header">Item Description: {item.item_description}</Link>
+                        <Link to={`/clothingitems/${item.id}`} className="item__header">Item Description: {item.item_description}</Link>
                         <div className="item">Item Type: {item.item_type}</div>
                         <div className="item">Size: {item.size}</div>
                         <div className="item">Belongs to: {item.kid_nickname}</div>

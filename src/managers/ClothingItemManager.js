@@ -10,6 +10,18 @@ export const getClothingItems = () => {
         .then(response => response.json())
 }
 
+export const getSingleClothingItem = (id) => {
+    return fetch(`http://localhost:8000/clothingitems/${id}`, {
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("clothes_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const getMatchingItems = () => {
     return fetch("http://localhost:8000/clothingitems?siblingMatch=True", {
         method: "GET",
@@ -46,7 +58,7 @@ export const getClothingTypes = () => {
 }
 
 export const createClothingItem = (clothe) => {
-    return fetch("http://localhost:8000/clothingitems", {
+    return fetch('http://localhost:8000/clothingitems', {
         method: "POST",
         headers:{
             "Content-Type": "application/json",

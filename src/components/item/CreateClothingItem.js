@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from 'react-router-dom'
+import { parsePath, useNavigate } from 'react-router-dom'
 import { createClothingItem, getClothingTypes, getClothingUses } from "../../managers/ClothingItemManager"
 import { getAllKids } from "../../managers/KidManager"
 import "./Form.css"
@@ -8,19 +8,19 @@ import "./Form.css"
 export const CreateClothingItemForm = () => {
     const navigate = useNavigate()
     const [clotheItemTypes, setClotheItemTypes] = useState([])
-    const [clotheItemUses, setClotheItemUses] = useState([])
-    const [chosenUses, setChosenUses] = useState(new Set())
+    // const [clotheItemUses, setClotheItemUses] = useState([])
+    // const [chosenUses, setChosenUses] = useState(new Set())
     const [Kids, setKids] = useState([])
 
     const [currentClotheItem, updateClotheItem] = useState({
-        itemDescription: "",
-        clothingType: 0,
+        item_description: "",
+        clothing_type: 0,
         kid: 0,
         size: "",
-        cleanOrDirty: true,
-        itemFits: true,
-        siblingHasMatch: false,
-        itemImage: ""
+        clean_or_dirty: true,
+        item_fits: true,
+        sibling_has_match: false,
+        item_image: ""
     })
 
     useEffect(() => {
@@ -31,9 +31,9 @@ export const CreateClothingItemForm = () => {
         getAllKids().then(setKids)
     }, [])
 
-    useEffect(() => {
-        getClothingUses().then(setClotheItemUses)
-    }, [])
+    // useEffect(() => {
+    //     getClothingUses().then(setClotheItemUses)
+    // }, [])
 
     const changeClotheItemState = (evt) => {
         const copy = { ...currentClotheItem }
@@ -46,13 +46,13 @@ export const CreateClothingItemForm = () => {
             <h2 className="clothingItemForm__title">Add New Item</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="itemDescription">Description: </label>
+                    <label htmlFor="item_description">Description: </label>
                     <input 
                         onChange={changeClotheItemState}
                         required autoFocus 
-                        type="text" id="itemDescription" 
+                        type="text" id="item_description" 
                         className="form-control"
-                        value= {currentClotheItem.itemDescription} 
+                        value= {currentClotheItem.item_description} 
                         placeholder="Item Description (required field)"   
                     />
                 </div>
@@ -61,11 +61,11 @@ export const CreateClothingItemForm = () => {
                 <div className="form-group">
                     <label htmlFor="clothing_type">Select a Clothing Type: required </label>
                     <select 
-                        id="clothingType"
-                        name="clothingType"
+                        id="clothing_type"
+                        name="clothing_type"
                         className="form-control"
                         onChange={changeClotheItemState}>
-                        <option className="form-drop"id={"clothingType"}>Select a Clothing Type...</option>
+                        <option className="form-drop"id={"clothing_type"}>Select a Clothing Type...</option>
                         {
                             clotheItemTypes.map(type => {
                                 return <option value={type.id}>{type.type}</option>
@@ -108,11 +108,11 @@ export const CreateClothingItemForm = () => {
                 <div className="form-group">
                     <label htmlFor="clean_or_dirty">Clean or Dirty? </label>
                     <select 
-                        id="cleanOrDirty"
-                        name="cleanOrDirty"
+                        id="clean_or_dirty"
+                        name="clean_or_dirty"
                         className="form-control"
                         onChange={changeClotheItemState}>
-                        <option className="form-drop"id={"cleanOrDirty"}>Select Clean or Dirty...</option>
+                        <option className="form-drop"id={"clean_or_dirty"}>Select Clean or Dirty...</option>
                         <option value={true}>Clean</option>
                         <option value={false}>Dirty</option>
                     </select>
@@ -122,11 +122,11 @@ export const CreateClothingItemForm = () => {
                 <div className="form-group">
                     <label htmlFor="item_fits">Does it still fit? </label>
                     <select 
-                        id="itemFits"
-                        name="itemFits"
+                        id="item_fits"
+                        name="item_fits"
                         className="form-control"
                         onChange={changeClotheItemState}>
-                        <option className="form-drop"id={"itemFits"}>Select Yes or No...</option>
+                        <option className="form-drop"id={"item_fits"}>Select Yes or No...</option>
                         <option value={true}>Yes</option>
                         <option value={false}>No</option>
                     </select>
@@ -136,17 +136,17 @@ export const CreateClothingItemForm = () => {
                 <div className="form-group">
                     <label htmlFor="sibling_has_match">Does a sibling have a matching item? </label>
                     <select 
-                        id="siblingHasMatch"
-                        name="siblingHasMatch"
+                        id="sibling_has_match"
+                        name="sibling_has_match"
                         className="form-control"
                         onChange={changeClotheItemState}>
-                        <option className="form-drop"id={"siblingHasMatch"}>Select Yes or No...</option>
+                        <option className="form-drop"id={"sibling_has_match"}>Select Yes or No...</option>
                         <option value={true}>Yes</option>
                         <option value={false}>No</option>
                     </select>
                 </div>
             </fieldset>
-            <fieldset>
+            {/* <fieldset>
                 <div className="form-group">
                     <label htmlFor="item_uses">Select types of uses:</label>
                         {
@@ -171,7 +171,7 @@ export const CreateClothingItemForm = () => {
                         )
                     }
                 </div>
-            </fieldset>
+            </fieldset> */}
 
 
             <button type="submit"
@@ -180,22 +180,22 @@ export const CreateClothingItemForm = () => {
                     evt.preventDefault()
 
                     const clothe = {
-                        itemDescription: currentClotheItem.itemDescription,
-                        clothingType: parseInt(currentClotheItem.clothingType),
+                        item_description: currentClotheItem.item_description,
+                        clothing_type: parseInt(currentClotheItem.clothing_type),
                         kid: parseInt(currentClotheItem.kid),
                         size: currentClotheItem.size,
-                        cleanOrDirty: currentClotheItem.cleanOrDirty,
-                        itemFits: currentClotheItem.itemFits,
-                        siblingHasMatch: currentClotheItem.siblingHasMatch,
-                        itemImage: "",
-                        clothingUses: Array.from(chosenUses)
+                        clean_or_dirty: currentClotheItem.clean_or_dirty,
+                        item_fits: currentClotheItem.item_fits,
+                        sibling_has_match: currentClotheItem.sibling_has_match,
+                        item_image: ""
+                        // clothing_uses: Array.from(chosenUses)
                     }
 
                     // Send POST request to your API
                     createClothingItem(clothe)
                         .then(() => navigate("/clothingitems"))
                 }}
-                className="btn btn-primary">Create</button>
+                className="btn btn-primary">Add Item</button>
         </form>
     )
 }
