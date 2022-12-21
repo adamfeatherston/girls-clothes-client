@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { deleteClothingItem, getClothingItems, } from "../../managers/ClothingItemManager.js"
+import { deleteClothingItem, getClothingItems } from "../../managers/ClothingItemManager.js"
 import "./Item.css"
 
-export const ClothingItemList = (props) => {
+export const ClothingItemList = () => {
     const [ items, setItems ] = useState([])
     const navigate = useNavigate();
     
@@ -40,10 +40,15 @@ export const ClothingItemList = (props) => {
                 items.map(item => {
                     return <>
                     <section key={`item--${item.id}`} className="item">
-                        <Link to={`/items/edit/${item.id}`} className="item__header">Item Description: {item.item_description}</Link>
+                        <Link to={`/clothingitems/${item.id}`} className="item__header">Item Description: {item.item_description}</Link>
                         <div className="item">Item Type: {item.item_type}</div>
                         <div className="item">Size: {item.size}</div>
                         <div className="item">Belongs to: {item.kid_nickname}</div>
+                        {/* <div>Uses</div>
+                            {items.clothing_uses.map(
+                                use => <div key={`use--${use.use}`}>Use: {use.use}</div>
+                                )
+                            } */}
                         {clothesUser
                             ? <button className="buttons"
                                 onClick={() => {
