@@ -8,8 +8,8 @@ import "./Form.css"
 export const CreateClothingItemForm = () => {
     const navigate = useNavigate()
     const [clotheItemTypes, setClotheItemTypes] = useState([])
-    // const [clotheItemUses, setClotheItemUses] = useState([])
-    // const [chosenUses, setChosenUses] = useState(new Set())
+    const [clotheItemUses, setClotheItemUses] = useState([])
+    const [chosenUses, setChosenUses] = useState(new Set())
     const [Kids, setKids] = useState([])
 
     const [currentClotheItem, updateClotheItem] = useState({
@@ -31,13 +31,20 @@ export const CreateClothingItemForm = () => {
         getAllKids().then(setKids)
     }, [])
 
-    // useEffect(() => {
-    //     getClothingUses().then(setClotheItemUses)
-    // }, [])
+    useEffect(() => {
+        getClothingUses().then(setClotheItemUses)
+    }, [])
 
     const changeClotheItemState = (evt) => {
+        var str2bool = (value) => {
+            if (value && typeof value === "string") {
+                if (value.toLocaleLowerCase() === "true") return true;
+                if (value.toLocaleLowerCase() === "false") return false;
+        }
+        return value;
+    }
         const copy = { ...currentClotheItem }
-        copy[evt.target.id] = evt.target.value
+        copy[evt.target.id] = str2bool(evt.target.value)
         updateClotheItem(copy)
     }
 
@@ -106,15 +113,15 @@ export const CreateClothingItemForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="clean_or_dirty">Clean or Dirty? </label>
+                    <label htmlFor="clean_or_dirty">Clean or Dirty?: </label>
                     <select 
                         id="clean_or_dirty"
                         name="clean_or_dirty"
                         className="form-control"
                         onChange={changeClotheItemState}>
-                        <option className="form-drop"id={"clean_or_dirty"}>Select Clean or Dirty...</option>
-                        <option value={true}>Clean</option>
-                        <option value={false}>Dirty</option>
+                        <option className="form-drop"id={"clean_or_dirty"}>Select Yes or No...</option>
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
                     </select>
                 </div>
             </fieldset>
@@ -146,7 +153,7 @@ export const CreateClothingItemForm = () => {
                     </select>
                 </div>
             </fieldset>
-            {/* <fieldset>
+            <fieldset>
                 <div className="form-group">
                     <label htmlFor="item_uses">Select types of uses:</label>
                         {
@@ -171,7 +178,7 @@ export const CreateClothingItemForm = () => {
                         )
                     }
                 </div>
-            </fieldset> */}
+            </fieldset>
 
 
             <button type="submit"
@@ -187,8 +194,8 @@ export const CreateClothingItemForm = () => {
                         clean_or_dirty: currentClotheItem.clean_or_dirty,
                         item_fits: currentClotheItem.item_fits,
                         sibling_has_match: currentClotheItem.sibling_has_match,
-                        item_image: ""
-                        // clothing_uses: Array.from(chosenUses)
+                        item_image: "",
+                        clothing_uses: Array.from(chosenUses)
                     }
 
                     // Send POST request to your API
