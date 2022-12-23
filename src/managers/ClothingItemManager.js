@@ -58,7 +58,7 @@ export const getClothingTypes = () => {
 }
 
 export const createClothingItem = (clothe) => {
-    return fetch('http://localhost:8000/clothingitems', {
+    return fetch("http://localhost:8000/clothingitems", {
         method: "POST",
         headers:{
             "Content-Type": "application/json",
