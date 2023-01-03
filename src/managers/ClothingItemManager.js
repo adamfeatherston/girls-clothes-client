@@ -81,3 +81,16 @@ export const getClothingUses = () => {
     })
         .then(response => response.json())
 }
+
+export const updateClothingItem = (clothe) => {
+    return fetch(`http://localhost:8000/clothingitems/${clothe.id}`, {
+        method: "PUT",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("clothes_token")}`
+        },
+        body: JSON.stringify(clothe)
+    })
+        .then(response => response.json())
+}

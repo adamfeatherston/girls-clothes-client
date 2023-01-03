@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { parsePath, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { createClothingItem, getClothingTypes, getClothingUses } from "../../managers/ClothingItemManager"
 import { getAllKids } from "../../managers/KidManager"
 import "./Form.css"
@@ -120,8 +120,8 @@ export const CreateClothingItemForm = () => {
                         className="form-control"
                         onChange={changeClotheItemState}>
                         <option className="form-drop"id={"clean_or_dirty"}>Select Yes or No...</option>
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
+                        <option value={true}>Clean</option>
+                        <option value={false}>Dirty</option>
                     </select>
                 </div>
             </fieldset>
@@ -134,8 +134,8 @@ export const CreateClothingItemForm = () => {
                         className="form-control"
                         onChange={changeClotheItemState}>
                         <option className="form-drop"id={"item_fits"}>Select Yes or No...</option>
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
+                        <option value={true}>Yes, still fits</option>
+                        <option value={false}>No, does not fit</option>
                     </select>
                 </div>
             </fieldset>
@@ -148,8 +148,8 @@ export const CreateClothingItemForm = () => {
                         className="form-control"
                         onChange={changeClotheItemState}>
                         <option className="form-drop"id={"sibling_has_match"}>Select Yes or No...</option>
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
+                        <option value={true}>Yes, sibling has same</option>
+                        <option value={false}>No, just for this kid</option>
                     </select>
                 </div>
             </fieldset>

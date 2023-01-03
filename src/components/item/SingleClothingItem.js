@@ -27,16 +27,16 @@ export const SingleClothingItem = () => {
 
         <section className="item__header">Item Description: {details.item_description} </section>
             <div className="item">Belongs to: {details.kid_nickname}</div>
-            <div className="item">Release in the year {details.size}</div>
+            <div className="item">Size: {details.size}</div>
             <div className="item">Is Clean?: {String(details.clean_or_dirty)}</div>
-            <div className="item">Sibling Has Matching Item? {String(details.sibling_has_match)}</div>
-            <div className="item">Does this still fit?{String(details.item_fits)}</div>
+            <div className="item">Sibling Has Matching Item?: {String(details.sibling_has_match)}</div>
+            <div className="item">Does this still fit?: {String(details.item_fits)}</div>
             <div>{details.item_image}</div>
 
         <h3>Can be used for the following purposes: </h3>
         {
             details.clothing_uses.map(
-                use => <div key={`use--${use?.use}`}>{use?.use}</div>
+                use => <div className="item" key={`use--${use?.use}`}>{use?.use}</div>
             )
         }
     </>
