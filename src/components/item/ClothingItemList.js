@@ -5,6 +5,7 @@ import "./Item.css"
 
 export const ClothingItemList = () => {
     const [ items, setItems ] = useState([])
+    const [clean, setClean] = useState(false)
     const navigate = useNavigate();
     
     const clothesParentUser = localStorage.getItem("is_staff")
@@ -18,15 +19,18 @@ export const ClothingItemList = () => {
         updateClothingItemList()
     }, [])
 
-    // const displayCleanOrDirty = (items) => {
-    //     if (items.clean_or_dirty == true){
-    //         return "Yes"
-    //     }
-    //     else {
-    //         return "No"
-    //     }
-    // }
-
+    useEffect(
+        () => {
+            if (clean) {
+                const cleanClothes = items.filter(item => item.clean_or_dirty === true)
+                setItems(cleanClothes)
+            }
+            else {
+                updateClothingItemList()
+            }
+        },
+        [clean]
+    )
 
     return (
         <>
@@ -35,14 +39,21 @@ export const ClothingItemList = () => {
                     navigate({ pathname: "/clothingitems/matching" })
                 }}
             >Matching Items</button>
+            <button className="buttons" onClick={() => {
+                setClean(!clean)
+            }} >
+                {
+                    clean
+                        ? "Show All Clothes"
+                        : "Clean Clothes Only"
+                } </button>
         <article className="items">
             {
                 items.map(item => {
                     return <>
                     <section key={`item--${item.id}`} className="item">
-                        <Link to={`/clothingitems/${item.id}`} className="item__header">Item Description: {item.item_description}</Link>
+                        <Link to={`/clothingitems/${item.id}`} className="item__header">{item.item_description}</Link>
                         <div className="item">Item Type: {item.item_type}</div>
-                        <div className="item">Size: {item.size}</div>
                         <div className="item">Belongs to: {item.kid_nickname}</div>
                         {/* <div>Uses</div>
                             {items.clothing_uses.map(
