@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
-import { getClothingTypes, getClothingUses, getSingleClothingItem, updateClothingItem } from "../../managers/ClothingItemManager"
+import { addUses, getClothingTypes, getClothingUses, getSingleClothingItem, removeUses, updateClothingItem } from "../../managers/ClothingItemManager"
 import { getAllKids } from "../../managers/KidManager"
 import "./Form.css"
 
@@ -11,9 +11,9 @@ export const UpdateClothingItemForm = () => {
     const [ itemTypes, setItemTypes ] =useState([])
     const [ chosenItemType, setChosenItemType ] = useState(0)
     const [ itemUses, setItemUses ] =useState([])
-    const [ chosenItemUses, setChosenItemUses ]  = useState(0)
     const [ kids, setKids ] = useState([])
     const [ chosenKid, setChosenKid ] = useState(0)
+    const [ assignedUses, setAssignedUses ] = useState(new Set())
 
     const [currentClotheItem, updateClotheItem] = useState({
         item_description: "",
@@ -35,9 +35,6 @@ export const UpdateClothingItemForm = () => {
         getClothingTypes().then(setItemTypes)
     }, [])
 
-    useEffect(() => {
-        setChosenItemUses(currentClotheItem.clothing_uses.id)
-    }, [currentClotheItem])
 
     useEffect(() => {
         getClothingUses().then(setItemUses)
@@ -52,8 +49,15 @@ export const UpdateClothingItemForm = () => {
     }, [])
 
     useEffect(() => {
-        getSingleClothingItem(clothingItemId).then(updateClotheItem)
+        getSingleClothingItem(clothingItemId).then(data => {updateClotheItem(data)
+            const selectedUses = new Set()
+            for (const use of data.clothing_uses) {
+                selectedUses.add(use.id)
+            }
+            setAssignedUses(selectedUses)
+        })
     }, [clothingItemId])
+
 
     const changeClotheItemState = (evt) => {
         var str2bool = (value) => {
@@ -192,7 +196,7 @@ export const UpdateClothingItemForm = () => {
                                 item_fits: currentClotheItem.item_fits,
                                 sibling_has_match: currentClotheItem.sibling_has_match,
                                 item_image: "",
-                                // clothing_uses: Array.from(chosenItemUses),
+                                clothing_uses: Array.from(assignedUses),
                                 id: currentClotheItem.id
                             }
         
@@ -203,29 +207,31 @@ export const UpdateClothingItemForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="item_uses">Select types of uses:</label>
-
                         {
-                            itemUses.map(
-                                use => <div>
-                                {use.use}
-                                <input
-                                    value={chosenItemUses}
-                                    onChange={
-                                        (evt) => {
-                                            const copy = new Set(chosenItemUses)
-                                            if (evt.target.checked){
-                                                copy.add(use.id)
-                                            }
-                                        else {
-                                            copy.delete(use.id)
-                                        }
-                                        setChosenItemUses(copy)
+                            itemUses.map((use) => {
+                                return <>
+                                <option value={`${use.id}`} key={`use--${use.id}`}>{use.use}</option>
+                                <input type="checkbox"
+                                    className="item_uses"
+                                    defaultChecked={
+                                        assignedUses.has(use.id)
                                     }
-                                }
-                                type="checkbox" /> 
-                            </div>
-                        )
-                    }
+                                    checked={
+                                        assignedUses.has(use.id)
+                                    }
+                                    onChange={(evt) => {
+                                        const copy = new Set(assignedUses)
+                                        if(copy.has(use.id)){
+                                            copy.delete(use.id)
+                                        } else {
+                                            copy.add(use.id)
+                                        }
+                                        setAssignedUses(copy)
+                                    }}
+                                    ></input>
+                                    </>
+                            })
+                        }      
                 </div>
             </fieldset>
 
