@@ -94,3 +94,26 @@ export const updateClothingItem = (clothe) => {
     })
         .then(response => response.json())
 }
+
+export const removeUses = clothingItemId => {
+    return fetch(`http://localhost:8000/events/${clothingItemId}/removeuses`, {
+        method: "DELETE",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("clothes_token")}`
+        }
+        })
+}
+
+export const addUses = clothingItemId => {
+    return fetch(`http://localhost:8000/events/${clothingItemId}/adduses`, {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("clothes_token")}`
+        },
+        body: JSON.stringify(clothingItemId)
+    })
+}
