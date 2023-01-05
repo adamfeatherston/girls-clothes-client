@@ -92,7 +92,7 @@ export const updateClothingItem = (clothe) => {
         },
         body: JSON.stringify(clothe)
     })
-        .then(response => response.json())
+
 }
 
 export const removeUses = clothingItemId => {

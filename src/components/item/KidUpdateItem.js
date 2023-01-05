@@ -5,7 +5,7 @@ import { getAllKids } from "../../managers/KidManager"
 import "./Form.css"
 
 
-export const UpdateClothingItemForm = () => {
+export const KidUpdateClothingItemForm = () => {
     const navigate = useNavigate()
     const { clothingItemId } = useParams()
     const [ itemTypes, setItemTypes ] =useState([])
