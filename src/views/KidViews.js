@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom"
 import { ClothingItemList } from "../components/item/ClothingItemList"
 import { KidItemList } from "../components/item/KidItemList"
 import { KidMatchingItemList } from "../components/item/KidMatchingItemList"
-import { MatchingItemList } from "../components/item/MatchingItemList"
-import { SingleClothingItem } from "../components/item/SingleClothingItem"
+import { KidUpdateClothingItemForm } from "../components/item/KidUpdateItem"
+
 
 export const KidViews = () => {
     return <>
@@ -11,7 +11,7 @@ export const KidViews = () => {
             <Route path="/" element={<ClothingItemList />} />
             <Route path="/clothingitems" element={<KidItemList />} />
             <Route path="/clothingitems/matching" element={<KidMatchingItemList />} />
-            <Route path="/clothingitems/:clothingItemId" element={<SingleClothingItem />} />
+            <Route path="/clothingitems/:clothingItemId" element={<KidUpdateClothingItemForm />} />
         </Routes>
     </>
 }

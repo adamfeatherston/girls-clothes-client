@@ -55,11 +55,7 @@ export const ClothingItemList = () => {
                         <Link to={`/clothingitems/${item.id}`} className="item__header">{item.item_description}</Link>
                         <div className="item">Item Type: {item.item_type}</div>
                         <div className="item">Belongs to: {item.kid_nickname}</div>
-                        {/* <div>Uses</div>
-                            {items.clothing_uses.map(
-                                use => <div key={`use--${use.use}`}>Use: {use.use}</div>
-                                )
-                            } */}
+
                         {clothesUser
                             ? <button className="buttons"
                                 onClick={() => {
