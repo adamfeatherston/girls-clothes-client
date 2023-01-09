@@ -7,6 +7,9 @@ import { UpdateClothingItemForm } from "../components/item/UpdateItem"
 import { KidList } from "../components/kids/KidList"
 import { SingleKid } from "../components/kids/SingleKid"
 import { UpdateKidForm } from "../components/kids/UpdateKid"
+import { CreateOutfitForm } from "../components/outfit/CreateOutfit"
+import { OutfitList } from "../components/outfit/OutfitList"
+import { SingleOutfit } from "../components/outfit/SingleOutfit"
 
 export const ParentViews = () => {
     return <>
@@ -20,7 +23,10 @@ export const ParentViews = () => {
             <Route path="/clothingitems/edit/:clothingItemId" element={<UpdateClothingItemForm />} />
             <Route path="/kids" element={<KidList />} />
             <Route path="/kids/:kidId" element={< SingleKid />} />
-            <Route path="/kids/edit/:kidId" element={< UpdateKidForm />} />      
+            <Route path="/kids/edit/:kidId" element={< UpdateKidForm />} /> 
+            <Route path="/outfits" element={<OutfitList />} />
+            <Route path="/outfits/:outfitId" element={< SingleOutfit />} />
+            <Route path="/outfits/add" element={<CreateOutfitForm />} />     
         </Routes>
     </>
 }

@@ -20,7 +20,7 @@ export const SingleClothingItem = () => {
     return <>
         <div className="itemDetailHeader">
             <h2>{details.description}</h2>
-            <button className="btn btn-primary"
+            <button className="buttons"
                 onClick={() => navigate(`/clothingitems/edit/${clothingItemId}`)}
                 >Edit this item</button>
         </div>
