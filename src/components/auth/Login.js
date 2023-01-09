@@ -37,7 +37,8 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Girls Clothes Closet</h1>
+                    <h1>Daddy, what am I wearing today?</h1>
+                    <img className="logo" id="logo" src="https://res.cloudinary.com/dm5alwbmv/image/upload/v1673033215/girls%20clothes%20organizer/girls_clothes_example_dgcdz7.png"></img>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputUsername"> Username: </label>
@@ -50,7 +51,7 @@ export const Login = () => {
                     <fieldset style={{
                         textAlign: "center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                        <button className="button" type="submit">Sign In</button>
                     </fieldset>
                 </form>
             </section>

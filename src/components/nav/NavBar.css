@@ -7,4 +7,16 @@
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.button {
+    color: white;
+    border: solid rgb(178, 200, 188);
+    background-color: rgb(233, 196, 210);
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.button:not(:disabled):hover {
+    transform: scale(1.2) translateY(.125rem);
 }

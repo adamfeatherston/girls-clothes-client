@@ -202,7 +202,7 @@ export const CreateClothingItemForm = () => {
                     createClothingItem(clothe)
                         .then(() => navigate("/clothingitems"))
                 }}
-                className="btn btn-primary">Add Item</button>
+                className="button">Add Item</button>
         </form>
     )
 }
