@@ -41,7 +41,7 @@ export const MatchingItemList = (props) => {
     return (
         <>
         <section className="button_area">
-        <div className="button_item">
+        {/* <div className="button_item">
                 <label htmlFor="type">Filter by Type:</label>
                     <select 
                         id="type"
@@ -55,7 +55,7 @@ export const MatchingItemList = (props) => {
                             })
                         }
                     </select>
-            </div>
+            </div> */}
             <div className="button_item">
                 <button className="buttons"
                     onClick={() => {

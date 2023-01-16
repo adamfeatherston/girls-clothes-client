@@ -26,7 +26,7 @@ export const ParentViews = () => {
             <Route path="/kids/edit/:kidId" element={< UpdateKidForm />} /> 
             <Route path="/outfits" element={<OutfitList />} />
             <Route path="/outfits/:outfitId" element={< SingleOutfit />} />
-            <Route path="/outfits/add" element={<CreateOutfitForm />} />     
+            {/* <Route path="/outfits/add" element={<CreateOutfitForm />} />      */}
         </Routes>
     </>
 }

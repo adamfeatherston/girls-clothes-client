@@ -9,8 +9,6 @@ export const KidMatchingItemList = (props) => {
     const [clean, setClean] = useState(false)
     const navigate = useNavigate();
     
-    const clothesParentUser = localStorage.getItem("is_staff")
-    const clothesUser = JSON.parse(clothesParentUser)
     
     const updateClothingItemList = () => {
         getMatchingItems().then(data => setItems(data))
@@ -41,7 +39,7 @@ export const KidMatchingItemList = (props) => {
     return (
         <>
         <section className="button_area">
-        <div className="button_item">
+        {/* <div className="button_item">
                 <label htmlFor="type">Filter by Type:</label>
                     <select 
                         id="type"
@@ -55,7 +53,7 @@ export const KidMatchingItemList = (props) => {
                             })
                         }
                     </select>
-            </div>
+            </div> */}
             <div className="button_item">    
                 <button className="buttons"
                     onClick={() => {
@@ -79,7 +77,8 @@ export const KidMatchingItemList = (props) => {
                 items.map(item => {
                     return <>
                     <section key={`item--${item.id}`} className="item">
-                        <Link to={`/clothingitems/${item.id}`} className="item__header">Item Description: {item.item_description}</Link>
+                        {/* <Link to={`/clothingitems/${item.id}`} className="item__header">Item Description: {item.item_description}</Link> */}
+                        <div  className="item__header">{item.item_description}</div>
                         <div className="item_info">Item Type: {item.item_type}</div>
                         <div> 
                         {

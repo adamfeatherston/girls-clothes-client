@@ -11,6 +11,7 @@ export const CreateClothingItemForm = () => {
     const [clotheItemUses, setClotheItemUses] = useState([])
     const [chosenUses, setChosenUses] = useState(new Set())
     const [Kids, setKids] = useState([])
+    const [image, setImage] = useState([])
 
     const [currentClotheItem, updateClotheItem] = useState({
         item_description: "",
@@ -34,6 +35,24 @@ export const CreateClothingItemForm = () => {
     useEffect(() => {
         getClothingUses().then(setClotheItemUses)
     }, [])
+
+    const showWidget = (event) => {
+        event.preventDefault()
+        let widget = window.cloudinary.createUploadWidget(
+
+            {
+                cloudName: "dm5alwbmv",
+                uploadPreset: "ayinbk5a"
+            },
+            (error, result) => {
+                if (!error && result && result.event === "success") {
+                    setImage(result.info.url)
+                    console.log(result.info);
+                }
+            }
+        )
+        widget.open()
+    }
 
     const changeClotheItemState = (evt) => {
         var str2bool = (value) => {
@@ -178,6 +197,15 @@ export const CreateClothingItemForm = () => {
                         )
                     }
                 </div>
+            </fieldset>
+            <fieldset>
+            {
+                !image
+                ?<img src={image} alt="image"></img>
+                : ""
+
+        }
+        {/* <button onClick={(event) => showWidget(event)}>Add Photo </button> */}
             </fieldset>
 
 
