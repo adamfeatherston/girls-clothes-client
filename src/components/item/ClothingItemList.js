@@ -6,6 +6,7 @@ import "./Item.css"
 export const ClothingItemList = () => {
     const [ items, setItems ] = useState([])
     const [ types, setTypes ] = useState([])
+    // const [ sorteds, setSorted ] = useState([])
     const [clean, setClean] = useState(false)
     const navigate = useNavigate();
     
@@ -16,9 +17,19 @@ export const ClothingItemList = () => {
         getClothingItems().then(data => setItems(data))
     }
 
-    const filterClothingType = () =>  {
-        getClothingTypes().then(data => setTypes(data));
-    }
+    
+    // useEffect(
+    //     () => {
+    //     if (sorteds) {
+    //         const filterClothingType = sorteds.filter(sorted => sorted.type)
+    //         setSorted(filterClothingType)
+    //     }
+    //     else {
+    //         updateClothingItemList()
+    //     }
+    // },
+    // [sorteds]
+    // )
 
     useEffect(() => {
         getClothingTypes().then(setTypes)
@@ -44,7 +55,7 @@ export const ClothingItemList = () => {
     return (
         <>
         <section className="button_area">
-            <div className="button_item">
+            {/* <div className="button_item">
                 <label htmlFor="type">Filter by Type:</label>
                     <select 
                         id="type"
@@ -58,7 +69,7 @@ export const ClothingItemList = () => {
                             })
                         }
                     </select>
-            </div>
+            </div> */}
             <div className="button_item">
                 <button className="buttons"
                     onClick={() => {

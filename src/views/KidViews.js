@@ -3,6 +3,7 @@ import { ClothingItemList } from "../components/item/ClothingItemList"
 import { KidItemList } from "../components/item/KidItemList"
 import { KidMatchingItemList } from "../components/item/KidMatchingItemList"
 import { KidUpdateClothingItemForm } from "../components/item/KidUpdateItem"
+import { SingleClothingItem } from "../components/item/SingleClothingItem"
 import { OutfitList } from "../components/outfit/OutfitList"
 
 
